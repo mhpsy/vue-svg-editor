@@ -112,8 +112,6 @@ function addMouseDownAndMoveEvent(dom: HTMLElement) {
 }
 
 const clickItem = (e) => {
-    console.log(e)
-    e.target.classList.add("selected")
     console.log(e.target["__mh-svg-editor__"])
 }
 
