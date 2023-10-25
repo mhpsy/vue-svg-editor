@@ -2,6 +2,7 @@
 
 import {SvgItem} from "@/components/svg-editor/entities/svgItem";
 import {onMounted, ref, watchEffect} from "vue";
+import {getSvgPositioningOptions} from "@/utils/positioning/svg-el-positioning";
 
 interface propsI {
     showItem: SvgItem,
@@ -37,19 +38,6 @@ const startY = ref(0);
 const lastX = ref(0)
 const lastY = ref(0)
 
-interface getAttributesI {
-    startX: number,
-    startY: number,
-    lastX: number,
-    lastY: number
-}
-
-interface getAttributesRes {
-    x: number,
-    y: number,
-    width: number,
-    height: number
-}
 
 //处理开始和结束的位置
 function getAttributes(options: getAttributesI): getAttributesRes {
@@ -93,14 +81,12 @@ function addMouseDownAndMoveEvent(dom: HTMLElement) {
                     name: "root-svg-1",
                     id: "rect-1",
                     attributes: {
-                        ...getAttributes(
-                            {
-                                startX: startX.value,
-                                startY: startY.value,
-                                lastX: lastX.value,
-                                lastY: lastY.value
-                            }
-                        ),
+                        ...getSvgPositioningOptions({
+                            startX: startX.value,
+                            startY: startY.value,
+                            endX: lastX.value,
+                            endY: lastY.value
+                        }),
                         fill: "#000000",
                     }
                 }
