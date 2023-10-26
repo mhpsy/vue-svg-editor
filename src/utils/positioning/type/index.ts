@@ -14,7 +14,7 @@ interface mousePositioningOptions {
     endY: number;
 }
 
-export {
+export type {
     svgPositioningOptions,
     mousePositioningOptions
 }
